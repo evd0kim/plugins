@@ -92,9 +92,14 @@ def run_all(args):
     print("Testing all plugins in {root}".format(root=root))
 
 
-    results = [run_one(p) for p in enumerate_plugins(root)]
-    success = all(results)
-    sys.exit(1 if not success else 0)
+    results = [(p, run_one(p)) for p in enumerate_plugins(root)]
+    success = all([t[1] for t in results])
+
+    if not success:
+        print("The following tests failed:")
+        for t in results:
+            print(" - {p.name} ({p.path})".format(p=t[0]))
+        sys.exit(1)
 
 if __name__ == "__main__":
     run_all(sys.argv[1:])
