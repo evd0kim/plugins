@@ -100,7 +100,7 @@ def run_all(args):
 
     if not success:
         print("The following tests failed:")
-        for t in results:
+        for t in filter(lambda t: t[1], results):
             print(" - {p.name} ({p.path})".format(p=t[0]))
         sys.exit(1)
 
