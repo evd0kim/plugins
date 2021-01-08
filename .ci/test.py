@@ -79,6 +79,8 @@ def run_one(p: Plugin) -> bool:
         return True
     except:
         return False
+    finally:
+        print("::endgroup")
 
 
 def run_all(args):
