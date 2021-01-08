@@ -46,6 +46,7 @@ def run_one(p: Plugin) -> bool:
         return True
 
     print("Found {ctestfiles} test files, creating virtualenv and running tests".format(ctestfiles=len(testfiles)))
+    print("::group::{p.name}".format(p=p))
 
     # Create a virtual env
     vdir = tempfile.TemporaryDirectory()
